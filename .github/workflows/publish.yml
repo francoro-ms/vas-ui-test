@@ -55,6 +55,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v1.1.1
         with:
           token: ${{ secrets.GPR_TOKEN }}
-          repository: vas-dev/Morpheus-FE
+          repository: francoro-ms/Morpheus-test
           event-type: vas-fe-published
           client-payload: { actor: ${{GITHUB_ACTOR}} }
