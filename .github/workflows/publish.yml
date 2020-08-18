@@ -10,47 +10,6 @@ jobs:
     # skip for automatic commits from vas-build
     if: github.actor != 'vas-build'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GPR_TOKEN }}
-          fetch-depth: 0
-
-      - name: Use Node
-        uses: actions/setup-node@master
-        with:
-          registry-url: https://npm.pkg.github.com/
-          scope: '@vas-dev'
-          node-version: 12.16.1
-
-      - name: Install deps
-        run: |
-          yarn install --frozen-lockfile
-
-      - name: Build
-        run: yarn build
-
-      - name: Publish
-        run: yarn semantic-release
-        env:
-          HUSKY_SKIP_HOOKS: 1
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          GH_TOKEN: ${{ secrets.GPR_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_AUTHOR_NAME: VAS Build
-          GIT_AUTHOR_EMAIL: vas-build@vas.com
-          GIT_COMMITTER_NAME: VAS Build
-          GIT_COMMITTER_EMAIL: vas-build@vas.com
-
-      - name: Build Storybook Docs
-        run: yarn run --max-old-space-size=7168 build-storybook-docs
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GPR_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: .out
-
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1.1.1
         with:
