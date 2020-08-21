@@ -16,4 +16,4 @@ jobs:
           token: ${{ secrets.GPR_TOKEN }}
           repository: francoro-ms/Morpheus-test
           event-type: vas-fe-published
-          client-payload: '{"actor": ${{secrets.GITHUB_ACTOR}}}'
+          client-payload: '{ "actor": "${{secrets.GITHUB_ACTOR}}" }'
