@@ -13,6 +13,7 @@ jobs:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1.1.1
         with:
+          token: ${{ secrets.GPR_TOKEN }}
           repository: francoro-ms/Morpheus-test
           event-type: vas-fe-published
           client-payload: ${{secrets.GITHUB_ACTOR}}
